@@ -107,6 +107,7 @@ AZ_PUSH_DISABLE_WARNING(4244 4251 4800, "-Wunknown-warning-option") // 4244: con
 AZ_POP_DISABLE_WARNING
 
 #include <AzToolsFramework/UI/PropertyEditor/ui_EntityPropertyEditor.h>
+#include <CreateComponent/CreateComponentDialog.h>
 
 // This has to live outside of any namespaces due to issues on Linux with calls to Q_INIT_RESOURCE if they are inside a namespace
 void initEntityPropertyEditorResources()
@@ -3046,6 +3047,13 @@ namespace AzToolsFramework
         addAction(m_actionToMoveComponentsBottom);
         m_entityComponentActions.push_back(m_actionToMoveComponentsBottom);
 
+        m_actionCreateCPPComponent = new QAction(tr("Create C++ Component..."), this);
+        m_actionCreateCPPComponent->setShortcut(Qt::Key_End);
+        m_actionCreateCPPComponent->setShortcutContext(Qt::WidgetWithChildrenShortcut);
+        connect(m_actionCreateCPPComponent, &QAction::triggered, this, &EntityPropertyEditor::CreateCPPComponent);
+        addAction(m_actionCreateCPPComponent);
+        m_entityComponentActions.push_back(m_actionCreateCPPComponent);
+
         UpdateInternalState();
     }
 
@@ -3484,6 +3492,16 @@ namespace AzToolsFramework
         }
 
         QueuePropertyRefresh();
+    }
+
+    void EntityPropertyEditor::CreateCPPComponent()
+    {
+        const auto& componentsToEdit = GetSelectedComponents();
+
+        CreateComponentDialog* createComponentDialog = new CreateComponentDialog();
+        createComponentDialog->SetBaseComponent(componentsToEdit);
+        createComponentDialog->open();
+        
     }
 
     void EntityPropertyEditor::MoveComponentBefore(const AZ::Component* sourceComponent, const AZ::Component* targetComponent, ScopedUndoBatch& undo)

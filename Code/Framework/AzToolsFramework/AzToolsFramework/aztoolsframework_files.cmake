@@ -163,6 +163,9 @@ set(FILES
     ContainerEntity/ContainerEntityNotificationBus.h
     ContainerEntity/ContainerEntitySystemComponent.cpp
     ContainerEntity/ContainerEntitySystemComponent.h
+    CreateComponent/CreateComponentDialog.ui
+    CreateComponent/CreateComponentDialog.h
+    CreateComponent/CreateComponentDialog.cpp
     Editor/ActionManagerIdentifiers/EditorActionUpdaterIdentifiers.h
     Editor/ActionManagerIdentifiers/EditorContextIdentifiers.h
     Editor/ActionManagerIdentifiers/EditorMenuIdentifiers.h

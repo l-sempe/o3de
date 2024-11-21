@@ -407,6 +407,7 @@ namespace AzToolsFramework
         QAction* m_actionToMoveComponentsDown = nullptr;
         QAction* m_actionToMoveComponentsTop = nullptr;
         QAction* m_actionToMoveComponentsBottom = nullptr;
+        QAction* m_actionCreateCPPComponent = nullptr;
 
         AzToolsFramework::MenuManagerInterface* m_menuManagerInterface = nullptr;
 
@@ -430,6 +431,7 @@ namespace AzToolsFramework
         void MoveComponentsDown();
         void MoveComponentsTop();
         void MoveComponentsBottom();
+        void CreateCPPComponent();
 
         //component reorder and drag drop helpers
 
